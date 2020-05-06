@@ -1,4 +1,6 @@
 #!/bin/sh
+# Specify targets to scan in <HOST>, edit channel (SLAP = SLack + nmAP), and set OAuth Access Token to begin SLAPping. 
+# Edits will be made as time goes on - removed -sV and other flags to lower aggression.
 TARGETS="<HOST>"
 OPTIONS="-v -p- -Pn -T4"
 date=$(date +%Y-%m-%d-%H-%M-%S)
