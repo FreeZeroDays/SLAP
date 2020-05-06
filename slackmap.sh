@@ -1,6 +1,6 @@
 #!/bin/sh
 TARGETS="<HOST>"
-OPTIONS="-v -T4 -sV -p-"
+OPTIONS="-v -p- -Pn -T4"
 date=$(date +%Y-%m-%d-%H-%M-%S)
 cd /nmap/diffs
 nmap $OPTIONS $TARGETS -oA scan-$date > /dev/null
