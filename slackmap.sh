@@ -1,5 +1,5 @@
 #!/bin/sh
-TARGETS="167.172.254.56"
+TARGETS="<HOST>"
 OPTIONS="-v -T4 -sV -p-"
 date=$(date +%Y-%m-%d-%H-%M-%S)
 cd /nmap/diffs
