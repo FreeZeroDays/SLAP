@@ -14,7 +14,7 @@ while read line; do
 	IPRANGES=`echo ${line} | cut -d: -f2`
 	echo "Scanning ${CUSTOMERNAME}'s perimeter, detected IP ranges: ${IPRANGES}"
 	cd ${WORKINGDIR}
-	nmap ${OPTIONS} ${IPRANGES} -oX ${CUSTOMERNAME}-${DATE}.xml > /dev/null
+	nmap ${SCANOPTIONS} ${IPRANGES} -oX ${CUSTOMERNAME}-${DATE}.xml > /dev/null
 
 	slack() {
 		curl \
