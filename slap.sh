@@ -26,7 +26,7 @@ while read line; do
 
 	if [ -e ${CUSTOMERNAME}-prev.xml ]; then
 		ndiff ${CUSTOMERNAME}-prev.xml ${CUSTOMERNAME}-${DATE}.xml > ${CUSTOMERNAME}-${DATE}-diff
-		[ "$?" -eq "1" ] && sed -i -e 1,3d ${CUSTOMERNAME}-${DATE} && slack
+		[ "$?" -eq "1" ] && sed -i -e 1,3d ${CUSTOMERNAME}-${DATE}-diff && slack
 	fi
 	ln -sf ${CUSTOMERNAME}-${DATE}.xml ${CUSTOMERNAME}-prev.xml
 
