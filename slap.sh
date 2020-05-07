@@ -1,6 +1,5 @@
 #!/bin/sh
-# Specify targets to scan in <HOST>, edit channel (SLAP = SLack + nmAP), and set OAuth Access Token to begin SLAPping. 
-# Edits will be made as time goes on - removed -sV and other flags to lower aggression.
+# Specify targets to scan in ranges.conf, edit SLACKTOKEN, and begin SLAPping. 
 
 SCANOPTIONS="-v -p- -Pn -T4"
 TARGETFILE="ranges.conf"
