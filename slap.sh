@@ -18,7 +18,7 @@ while read line; do
 	slack() {
 		curl \
 		-F file=@${CUSTOMERNAME}-${DATE}-diff \
-	       	-F initial_comment="Port Change Detected" \
+	       	-F initial_comment="A port has been discovered!" \
 		-F channels=#slap \
 		-F token=${SLACKTOKEN} \
 	       	https://slack.com/api/files.upload
