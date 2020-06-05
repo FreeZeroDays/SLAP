@@ -31,3 +31,4 @@ while read line; do
 	ln -sf ${CUSTOMERNAME}-${DATE}.xml ${CUSTOMERNAME}-prev.xml
 
 done < ${TARGETFILE}
+curl -X POST -H 'Authorization: Bearer [PASTE SLACK TOKEN HERE]' -H 'Content-type: application/json' --data '{"channel":"slap","text":"Shiver me timbers! No other ports were discovered$
