@@ -1,6 +1,6 @@
 #!/bin/sh
 # Specify targets to scan in ranges.conf, edit SLACKTOKEN, and begin SLAPping.
-SCANOPTIONS="-v -T4 -F"
+SCANOPTIONS="-v -p- -Pn -T4"
 TARGETFILE="ranges.conf"
 DATE=$(date +%Y-%m-%d-%H-%M-%S)
 WORKINGDIR="/nmap/diffs"
