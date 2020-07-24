@@ -15,7 +15,7 @@ while read line; do
         slack_report() {
                 curl \
                 -F file=@${CUSTOMERNAME}-${DATE}-diff \
-                -F initial_comment=${MESSAGE} \
+                -F initial_comment="${MESSAGE}" \
                 -F channels=#slap \
                 -F token=${SLACKTOKEN} \
                 https://slack.com/api/files.upload
