@@ -35,10 +35,10 @@ while read line; do
 			sed -i -e 1,3d ${CUSTOMERNAME}-${DATE}-diff
 			IPADDRS=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep -o "[^-][0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | tr -d '^ ' | tr '\n' ', ' | tr -d ',$')
 			PORTCOUNT=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep "^\+[0-9]{1,5}/tcp" | wc -l)
-			MESSAGE="[${CUSTOMERNAME}]: ${PORTCOUNT} ports were detected across the following IP addresses: ${IPADDRS}"
+			MESSAGE="[${CUSTOMERNAME}]: ${PORTCOUNT} port(s) were detected across the following IP addresses: ${IPADDRS}"
 			slack_report
 		elif [ ${RESPONSECODE} -eq "0" ]; then
-			MESSAGE="[${CUSTOMERNAME}]: Shiver me timbers! No other ports were discovered today."
+			MESSAGE="[${CUSTOMERNAME}]: Shiver me timbers! No ports were discovered today."
 			no_diff
 		fi
 
