@@ -32,11 +32,11 @@ while read line; do
                 ndiff ${CUSTOMERNAME}-prev.xml ${CUSTOMERNAME}-${DATE}.xml > ${CUSTOMERNAME}-${DATE}-diff
                 if [ "$?" -eq "1" ]; then
 			sed -i -e 1,3d ${CUSTOMERNAME}-${DATE}-diff
-			IPADDRS=$(cat ${CUSTOMERNAME}-${DATE}-diff | grep -B1 "+Host is up" | egrep -o "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | tr '\n' ', ')
+			IPADDRS=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep -o "[^-][0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | tr -d '^ ' | tr '\n' ', ' | tr -d ',$')
 			PORTCOUNT=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep "^\+[0-9]{1,5}/tcp" | wc -l)
 			MESSAGE="[${CUSTOMERNAME}]: ${PORTCOUNT} ports were detected across the following IP addresses: ${IPADDRS}"
 			slack_report
-		elif [ "$?" -eq "0" ]; then
+		elif [ "$?" -eq "2" ]; then
 			no_diff
 		fi
 
