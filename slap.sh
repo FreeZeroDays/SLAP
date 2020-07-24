@@ -25,18 +25,20 @@ while read line; do
                 -X POST \
                 -H "Authorization: Bearer "${SLACKTOKEN}"" \
                 -H 'Content-type: application/json' \
-                --data '{"channel":"slap","text":"Shiver me timbers! No other ports were discovered today."}' \
+                --data '{"channel":"slap","text":"'"${MESSAGE}"'"}' \
                 https://slack.com/api/chat.postMessage
         }
         if [ -e ${CUSTOMERNAME}-prev.xml ]; then
                 ndiff ${CUSTOMERNAME}-prev.xml ${CUSTOMERNAME}-${DATE}.xml > ${CUSTOMERNAME}-${DATE}-diff
-                if [ "$?" -eq "1" ]; then
+		RESPONSECODE=$?
+                if [ ${RESPONSECODE} -eq "1" ]; then
 			sed -i -e 1,3d ${CUSTOMERNAME}-${DATE}-diff
 			IPADDRS=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep -o "[^-][0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | tr -d '^ ' | tr '\n' ', ' | tr -d ',$')
 			PORTCOUNT=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep "^\+[0-9]{1,5}/tcp" | wc -l)
 			MESSAGE="[${CUSTOMERNAME}]: ${PORTCOUNT} ports were detected across the following IP addresses: ${IPADDRS}"
 			slack_report
-		elif [ "$?" -eq "2" ]; then
+		elif [ ${RESPONSECODE} -eq "0" ]; then
+			MESSAGE="[${CUSTOMERNAME}]: Shiver me timbers! No other ports were discovered today."
 			no_diff
 		fi
 
