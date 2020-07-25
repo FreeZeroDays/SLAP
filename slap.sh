@@ -33,7 +33,7 @@ while read line; do
 		RESPONSECODE=$?
                 if [ ${RESPONSECODE} -eq "1" ]; then
 			sed -i -e 1,3d ${CUSTOMERNAME}-${DATE}-diff
-			IPADDRS=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep -o "[^-][0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | tr -d '^ ' | tr '\n' ', ' | tr -d ',$')
+			IPADDRS=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep -v "^-" | egrep -o "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | sed -E 's/^.//' | tr '\n' ', ' | tr -d ',$')
 			PORTCOUNT=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep "^\+[0-9]{1,5}/tcp" | wc -l)
 			MESSAGE="[${CUSTOMERNAME}]: ${PORTCOUNT} port(s) were detected across the following IP addresses: ${IPADDRS}"
 			slack_report
