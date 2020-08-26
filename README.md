@@ -10,6 +10,7 @@ SLAP is pretty straightforward to install! Only nmap, ndiff, and curl are requir
 
 ```bash
 apt-get install nmap ndiff curl
+git clone https://github.com/DeviantSec/SLAP
 ```
 
 ## Usage
