@@ -7,14 +7,14 @@ WORKINGDIR="/nmap/diffs"
 SLACKTOKEN=""
 SLACKCOMMENT=""
 while read line; do
-        CUSTOMERNAME=`echo ${line} | cut -d: -f1`
+        COMPANYNAME=`echo ${line} | cut -d: -f1`
         IPRANGES=`echo ${line} | cut -d: -f2`
-        echo "Scanning ${CUSTOMERNAME}'s perimeter, detected IP ranges: ${IPRANGES}"
+        echo "Scanning ${COMPANYNAME}'s perimeter, detected IP ranges: ${IPRANGES}"
         cd ${WORKINGDIR}
-        nmap ${SCANOPTIONS} ${IPRANGES} -oX ${CUSTOMERNAME}-${DATE}.xml > /dev/null
+        nmap ${SCANOPTIONS} ${IPRANGES} -oX ${COMPANYNAME}-${DATE}.xml > /dev/null
         slack_report() {
                 curl \
-                -F file=@${CUSTOMERNAME}-${DATE}-diff \
+                -F file=@${COMPANYNAME}-${DATE}-diff \
                 -F initial_comment="${MESSAGE}" \
                 -F channels=#slap \
                 -F token=${SLACKTOKEN} \
@@ -28,20 +28,20 @@ while read line; do
                 --data '{"channel":"slap","text":"'"${MESSAGE}"'"}' \
                 https://slack.com/api/chat.postMessage
         }
-        if [ -e ${CUSTOMERNAME}-prev.xml ]; then
-                ndiff ${CUSTOMERNAME}-prev.xml ${CUSTOMERNAME}-${DATE}.xml > ${CUSTOMERNAME}-${DATE}-diff
+        if [ -e ${COMPANYNAME}-prev.xml ]; then
+                ndiff ${COMPANYNAME}-prev.xml ${COMPANYNAME}-${DATE}.xml > ${COMPANYNAME}-${DATE}-diff
 		RESPONSECODE=$?
                 if [ ${RESPONSECODE} -eq "1" ]; then
-			sed -i -e 1,3d ${CUSTOMERNAME}-${DATE}-diff
-			IPADDRS=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep -v "^-" | egrep -o "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | sed -E 's/^[^0-9]//' | sed -z 's/\n/ | /g' | tr -d '|$')
-			PORTCOUNT=$(cat ${CUSTOMERNAME}-${DATE}-diff | egrep "^\+[0-9]{1,5}/tcp" | wc -l)
-			MESSAGE="[${CUSTOMERNAME}]: ${PORTCOUNT} port(s) were detected across the following IP addresses: ${IPADDRS}"
+			sed -i -e 1,3d ${COMPANYNAME}-${DATE}-diff
+			IPADDRS=$(cat ${COMPANYNAME}-${DATE}-diff | egrep -v "^-" | egrep -o "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | sed -E 's/^[^0-9]//' | sed -z 's/\n/ | /g' | tr -d '|$')
+			PORTCOUNT=$(cat ${COMPANYNAME}-${DATE}-diff | egrep "^\+[0-9]{1,5}/tcp" | wc -l)
+			MESSAGE="[${COMPANYNAME}]: ${PORTCOUNT} port(s) were detected across the following IP addresses: ${IPADDRS}"
 			slack_report
 		elif [ ${RESPONSECODE} -eq "0" ]; then
-			MESSAGE="[${CUSTOMERNAME}]: Shiver me timbers! No ports were discovered today."
+			MESSAGE="[${COMPANYNAME}]: Shiver me timbers! No ports were discovered today."
 			no_diff
 		fi
 
         fi
-        ln -sf ${CUSTOMERNAME}-${DATE}.xml ${CUSTOMERNAME}-prev.xml
+        ln -sf ${COMPANYNAME}-${DATE}.xml ${COMPANYNAME}-prev.xml
 done < ${TARGETFILE}
