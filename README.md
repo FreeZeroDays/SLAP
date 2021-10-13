@@ -2,7 +2,7 @@
 
 SLAP (SLack + nmAP) is an easy way to automate the discovery of your organizations internal or external environment and receive daily notifications about it in Slack. This works well for security teams who want to know *when* a port was exposed to the Internet, rather than find out six months later in a penetration test. This script has also been used by MSPs to alert customers of misconfigurations.
 
-SLAP was inspired by slackmap created by Jerry Gamblin: https://jerrygamblin.com/2016/11/05/continuous-network-monitoring-with-slack-alerting/
+SLAP was inspired by [slackmap](https://jerrygamblin.com/2016/11/05/continuous-network-monitoring-with-slack-alerting/) created by Jerry Gamblin:
 
 ## Installation
 
