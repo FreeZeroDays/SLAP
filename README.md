@@ -20,5 +20,8 @@ Using SLAP is also just as easy. Simply fill in the WORKINGDIR and SLACKTOKEN va
 ## Contributing
 Please feel free to contribute! If you want to discuss SLAP in depth then reach out to me on Twitter as well @FreeZeroDays
 
+## Featured
+The Shark Jack module for SLAP was featured in NetworkChuck's [you NEED to learn Port Security](https://www.youtube.com/watch?v=0W4JZIWtjLQ) video. Kind of fun!
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
