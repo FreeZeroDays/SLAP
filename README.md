@@ -22,6 +22,3 @@ Please feel free to contribute! If you want to discuss SLAP in depth then reach 
 
 ## Featured
 The Shark Jack module for SLAP was featured in NetworkChuck's [you NEED to learn Port Security](https://www.youtube.com/watch?v=0W4JZIWtjLQ) video. Kind of fun!
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
