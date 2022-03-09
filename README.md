@@ -1,10 +1,10 @@
 # Continuous Network Monitoring with SLAP 
 
-SLAP (SLack + nmAP) is an easy way to automate the discovery of your organizations internal or external environment and receive daily notifications about it in Slack. This works well for security teams who want to know *when* a port was exposed to the Internet, rather than find out six months later in a penetration test.
+SLAP (SLack + nmAP) is an easy way to automate the discovery of an organizations internal and/or external environment via Slack. This works well for teams who want to know *when* a port was exposed to the Internet, rather than find out six months later in a penetration test or after it's too late.
 
-This script has been used by MSPs to alert customers of misconfigurations. Additionally, I have used this during penetration tests to receive alerts about a customers environment.
+This script has previously been used by multiple MSPs to alert customers of misconfigurations. 
 
-SLAP was inspired by [slackmap](https://jerrygamblin.com/2016/11/05/continuous-network-monitoring-with-slack-alerting/) created by Jerry Gamblin. 
+SLAP was originally inspired by [slackmap](https://jerrygamblin.com/2016/11/05/continuous-network-monitoring-with-slack-alerting/) created by Jerry Gamblin. 
 
 ## Installation
 
@@ -17,11 +17,11 @@ git clone https://github.com/DeviantSec/SLAP
 
 ## Usage
 
-Using SLAP is also just as easy. Simply fill in the WORKINGDIR and SLACKTOKEN variables with the appropriate information. 
+Using SLAP is easy. Simply fill in the WORKINGDIR and SLACKTOKEN variables with the appropriate information. 
 
 ## Contributing
 
-Please feel free to contribute! If you want to discuss SLAP in depth then reach out to me on Twitter as well @FreeZeroDays
+Please feel free to contribute! If you want to discuss SLAP in depth then reach out to me on Twitter as well @FreeZeroDays.
 
 ## Featured
 
